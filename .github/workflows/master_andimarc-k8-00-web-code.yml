@@ -52,5 +52,5 @@ jobs:
       with:
         app-name: 'andimarc-k8-00-web-code'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_586dd889e6ea4d108c1060cc32194002 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d53c00b378b54c46b2d16bdaa0dbd397 }}
         package: .

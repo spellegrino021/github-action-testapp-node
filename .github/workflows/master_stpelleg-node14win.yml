@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'stpelleg-node14win'
           slot-name: 'Production'
-          publish-profile: \${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DEAD3329C0634416AC0B127CA9503B27 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DEAD3329C0634416AC0B127CA9503B27 }}
           package: .

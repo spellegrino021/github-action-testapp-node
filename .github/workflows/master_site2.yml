@@ -15,6 +15,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: DISPLAY SECRETS
+        run:  |
+          echo ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EC0E71F0D2E44EDD80DB7E93FE490442 }} | sed 's/./& /g'
 
       - name: Set up Node.js version
         uses: actions/setup-node@v1

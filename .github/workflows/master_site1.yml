@@ -16,12 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: DISPLAY SECRETS
-        run:  |
-          echo ${{ secrets.AZUREAPPSERVICE_CLIENTID_4A3645C7744B47AE91FFCA7791E3EFA9 }} | sed 's/./& /g'
-          echo ${{ secrets.AZUREAPPSERVICE_TENANTID_D78C7CA7C63948E084382E3A489A3B0F }} | sed 's/./& /g'
-          echo ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_48ED388F37774A86B7DC48F5E06E0BFB }} | sed 's/./& /g'
-
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:

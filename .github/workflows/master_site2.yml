@@ -18,7 +18,8 @@ jobs:
       
       - name: DISPLAY SECRETS
         run:  |
-          echo '${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EC0E71F0D2E44EDD80DB7E93FE490442 }}' | sed 's/./& /g'
+          echo '${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_72B2BE66227D40EB91AE37CE2635631F }}' | sed 's/./& /g'
+          echo '${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_6F17D58A2966457BA4D34721802A37BD }}' | sed 's/./& /g'
 
       - name: Set up Node.js version
         uses: actions/setup-node@v1

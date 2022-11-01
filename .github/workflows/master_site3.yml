@@ -1,0 +1,44 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and Deploy Windows Container App to Azure App Service
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Docker login to container registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_NAME }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and Push container to registry
+        run: |
+          docker build --file=taskapp/taskapp/Dockerfile -t ${{ secrets.REGISTRY_NAME }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }} .
+          docker push ${{ secrets.REGISTRY_NAME }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }}
+      
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F6C660686ACC4159835BDBDF65144F45 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_CE8ED6F09E664B1F8F3D33C27BAD7C0E }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_382FDA4C42A6468FA4ED2472E90E7DF2 }}
+
+      - name: Deploy container to Azure App Service
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.APP_NAME }}
+          images: ${{ secrets.REGISTRY_NAME }}/${{ secrets.IMAGE_NAME }}:${{ github.sha }}
+          

@@ -15,11 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
-      - name: DISPLAY SECRETS
-        run:  |
-          echo '${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_72B2BE66227D40EB91AE37CE2635631F }}' | sed 's/./& /g'
-          echo '${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_6F17D58A2966457BA4D34721802A37BD }}' | sed 's/./& /g'
 
       - name: Set up Node.js version
         uses: actions/setup-node@v1
@@ -58,4 +53,4 @@ jobs:
           app-name: 'site2'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_EC0E71F0D2E44EDD80DB7E93FE490442 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6F139249F82641E6885384FED91EECDE }}

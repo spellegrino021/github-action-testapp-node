@@ -50,9 +50,9 @@ jobs:
           
       - name: DISPLAY SECRETS
         run:  |
-          echo '${{ secrets.AZUREAPPSERVICE_CLIENTID_DBA03A26678F43EF917317E14B127148 }}' | sed 's/./& /g'
-          echo '${{ secrets.AZUREAPPSERVICE_TENANTID_C780F1C60304449499C8E307D926FE1B }}' | sed 's/./& /g'
-          echo '${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CFE062A1723C47618FB81F83A94D945A }}' | sed 's/./& /g'
+          echo '${{ secrets.AZUREAPPSERVICE_CLIENTID_FC71C5EACECB46998319E8BCCB973E10 }}' | sed 's/./& /g'
+          echo '${{ secrets.AZUREAPPSERVICE_TENANTID_3013A2BE6F9D4CE982448F039F7AB417 }}' | sed 's/./& /g'
+          echo '${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_52112AB1DBAC4A7DB4B806476DDDB43D }}' | sed 's/./& /g'
 
       - name: Login to Azure
         uses: azure/login@v1

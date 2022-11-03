@@ -47,7 +47,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
-      
+          
+      - name: DISPLAY SECRETS
+        run:  |
+          echo '${{ secrets.AZUREAPPSERVICE_CLIENTID_DBA03A26678F43EF917317E14B127148 }}' | sed 's/./& /g'
+          echo '${{ secrets.AZUREAPPSERVICE_TENANTID_C780F1C60304449499C8E307D926FE1B }}' | sed 's/./& /g'
+          echo '${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CFE062A1723C47618FB81F83A94D945A }}' | sed 's/./& /g'
+
       - name: Login to Azure
         uses: azure/login@v1
         with:

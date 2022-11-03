@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     # checkout the repo
@@ -34,6 +34,6 @@ jobs:
       with:
         app-name: site3
         slot-name: Production
-        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_96C3AF8FFD1448C8AB1144C6122658CE }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A2E45868E61E41CEB6D16F1C49903229 }}
         package: .
 

@@ -47,19 +47,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
-          
-      - name: DISPLAY SECRETS
-        run:  |
-          echo '${{ secrets.AZUREAPPSERVICE_CLIENTID_FC71C5EACECB46998319E8BCCB973E10 }}' | sed 's/./& /g'
-          echo '${{ secrets.AZUREAPPSERVICE_TENANTID_3013A2BE6F9D4CE982448F039F7AB417 }}' | sed 's/./& /g'
-          echo '${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_52112AB1DBAC4A7DB4B806476DDDB43D }}' | sed 's/./& /g'
-
+      
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FC71C5EACECB46998319E8BCCB973E10 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3013A2BE6F9D4CE982448F039F7AB417 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_52112AB1DBAC4A7DB4B806476DDDB43D }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B03603A8A0B141ABB8730F4A526429EA }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_95189EF1A20B4A31880737D3B1A91842 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_08A9A19FAF2C49BA9C737BF747A3C20D }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2

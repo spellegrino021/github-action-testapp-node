@@ -1,0 +1,47 @@
+name: Trigger auto deployment for cont-98
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ master ]
+    paths:
+    - '//**'
+    - '.github/workflows/cont-98-AutoDeployTrigger-29be1233-f20a-4a7b-ae80-7bbf71490e74.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.CONT98_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.CONT98_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.CONT98_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }} 
+          registryUrl: containerregistrywcqnkgq7hwikm.azurecr.io
+          registryUsername: ${{ secrets.CONT98_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.CONT98_REGISTRY_PASSWORD }}
+          containerAppName: cont-98
+          resourceGroup: next13onswab506
+          imageToBuild: containerregistrywcqnkgq7hwikm.azurecr.io/cont-98:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
